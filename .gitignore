@@ -27,9 +27,7 @@ build/Release
 node_modules
 
 # setting
-config
-config.js
+# config
+# config.js
 config/config.js.avoscloud/
-.avoscloud/
-.avoscloud/
 .avoscloud/
