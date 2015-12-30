@@ -169,11 +169,6 @@ function fetch(url){
 
 function createGame(url,res){
 	fetch(url).then(function(result){
-		result.originUrl = result.url;
-
-		delete result.url;
-		result.u77Id = result.u77Id || 0;
-		result.times = 0;
 		res.json(result);
 	},function(err){
 		if(err.status){
