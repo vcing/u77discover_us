@@ -192,10 +192,5 @@ router.get('/:url',function(req,res){
 	createGame(url,res);		
 });
 
-router.post('/:url',function(req,res){
-	var url = req.params.url;
-});
-
-
 
 module.exports = router;
