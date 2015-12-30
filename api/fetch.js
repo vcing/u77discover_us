@@ -84,6 +84,11 @@ var support = {
 	}
 }
 
+/**
+ * 下载图片
+ * @param  {String} url 图片url
+ * @return {Promise}     又拍云地址
+ */
 function downloadImage(url){
 	// 去掉图片参数
 	var remove = ['!','#','?','&'];
@@ -120,6 +125,7 @@ function downloadImage(url){
 	
 	return deffered.promise;
 }
+
 
 function getExtension(url){
 	var _bad = ['!','#','?'];
