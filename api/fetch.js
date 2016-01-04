@@ -81,6 +81,251 @@ var support = {
 			});	
 		});
 		return deffered.promise;
+	},
+	"a10.com":function(url){
+		var deffered = q.defer();
+		request({
+			url:url,
+			method:'GET',
+			timeout:15000
+		},function(err,res,body){
+			if(err || !body){
+				err.status = 101;
+				err.msg = "未找到游戏资源.";
+				err.err = err;
+				deffered.reject(err);
+				return false;
+			}
+			if(res.statusCode == 404){
+				var err = {
+					status : 101,
+					msg : "未找到游戏资源."
+				}
+				deffered.reject(err);
+				return false;
+			}
+			var html = body;
+			var $ = cheerio.load(html);
+			if($('[property="og:image"]').length == 0){
+				var err = {
+					status : 101,
+					msg : "未找到游戏资源."
+				}
+				deffered.reject(err);
+				return false;
+			}
+			downloadImage($('[property="og:image"]').attr('content')).then(function(results){
+				var title = $('[property="og:title"]').attr('content').split('-')[0];
+				var description = $('[property="og:description"]').attr('content') ;
+				if(title && description){
+					var result = {
+						title:title,
+						description:description,
+						img:[results],
+						url:url,
+						status:0
+					}
+					deffered.resolve(result);
+				}else{
+					var err = {
+						status : 101,
+						msg : "游戏数据获取失败."
+					}
+					deffered.reject(err);
+					return false;
+				}
+			},function(err){
+				err.status = 102;
+				err.msg = "图片存储错误.";
+				deffered.reject(err);
+				return false;
+			});	
+		});
+		return deffered.promise;
+	},
+	'notdoppler.com':function(url){
+		var deffered = q.defer();
+		request({
+			url:url,
+			method:'GET',
+			timeout:15000
+		},function(err,res,body){
+			if(err || !body){
+				err.status = 101;
+				err.msg = "未找到游戏资源.";
+				err.err = err;
+				deffered.reject(err);
+				return false;
+			}
+			if(res.statusCode == 404){
+				var err = {
+					status : 101,
+					msg : "未找到游戏资源."
+				}
+				deffered.reject(err);
+				return false;
+			}
+			var html = body;
+			var $ = cheerio.load(html);
+			// if($('[property="og:image"]').length == 0){
+			// 	var err = {
+			// 		status : 101,
+			// 		msg : "未找到游戏资源."
+			// 	}
+			// 	deffered.reject(err);
+			// 	return false;
+			// }
+			// downloadImage($('[property="og:image"]').attr('content')).then(function(results){
+				var title = $('head title').text().split('-')[0];
+				var descriptions = $('[name="description"]').attr('content').split(':');
+				var description = descriptions[descriptions.length - 1];
+				if(title && description){
+					var result = {
+						title:title,
+						description:description,
+						img:[],
+						url:url,
+						status:0
+					}
+					deffered.resolve(result);
+				}else{
+					var err = {
+						status : 101,
+						msg : "游戏数据获取失败."
+					}
+					deffered.reject(err);
+					return false;
+				}
+			// },function(err){
+			// 	err.status = 102;
+			// 	err.msg = "图片存储错误.";
+			// 	deffered.reject(err);
+			// 	return false;
+			// });	
+		});
+		return deffered.promise;
+	},
+	"enemy.com":function(url){
+		var deffered = q.defer();
+		request({
+			url:url,
+			method:'GET',
+			timeout:15000
+		},function(err,res,body){
+			if(err || !body){
+				err.status = 101;
+				err.msg = "未找到游戏资源.";
+				err.err = err;
+				deffered.reject(err);
+				return false;
+			}
+			if(res.statusCode == 404){
+				var err = {
+					status : 101,
+					msg : "未找到游戏资源."
+				}
+				deffered.reject(err);
+				return false;
+			}
+			var html = body;
+			var $ = cheerio.load(html);
+			if($('[property="og:image"]').length == 0){
+				var err = {
+					status : 101,
+					msg : "未找到游戏资源."
+				}
+				deffered.reject(err);
+				return false;
+			}
+			downloadImage($('[property="og:image"]').attr('content')).then(function(results){
+				var title = $('[property="og:title"]').attr('content').split('-')[0];
+				var description = $('[name="description"]').attr('content') ;
+				if(title && description){
+					var result = {
+						title:title,
+						description:description,
+						img:[results],
+						url:url,
+						status:0
+					}
+					deffered.resolve(result);
+				}else{
+					var err = {
+						status : 101,
+						msg : "游戏数据获取失败."
+					}
+					deffered.reject(err);
+					return false;
+				}
+			},function(err){
+				err.status = 102;
+				err.msg = "图片存储错误.";
+				deffered.reject(err);
+				return false;
+			});	
+		});
+		return deffered.promise;
+	},
+	"miragine.com":function(url){
+		var deffered = q.defer();
+		request({
+			url:url,
+			method:'GET',
+			timeout:15000
+		},function(err,res,body){
+			if(err || !body){
+				err.status = 101;
+				err.msg = "未找到游戏资源.";
+				err.err = err;
+				deffered.reject(err);
+				return false;
+			}
+			if(res.statusCode == 404){
+				var err = {
+					status : 101,
+					msg : "未找到游戏资源."
+				}
+				deffered.reject(err);
+				return false;
+			}
+			var html = body;
+			var $ = cheerio.load(html);
+			if($('[property="og:image"]').length == 0){
+				var err = {
+					status : 101,
+					msg : "未找到游戏资源."
+				}
+				deffered.reject(err);
+				return false;
+			}
+			downloadImage($('[property="og:image"]').attr('content')).then(function(results){
+				var title = $('[property="og:title"]').attr('content');
+				var description = $('[property="og:description"]').attr('content') ;
+				if(title && description){
+					var result = {
+						title:title,
+						description:description,
+						img:[results],
+						url:url,
+						status:0
+					}
+					deffered.resolve(result);
+				}else{
+					var err = {
+						status : 101,
+						msg : "游戏数据获取失败."
+					}
+					deffered.reject(err);
+					return false;
+				}
+			},function(err){
+				err.status = 102;
+				err.msg = "图片存储错误.";
+				deffered.reject(err);
+				return false;
+			});	
+		});
+		return deffered.promise;
 	}
 }
 
